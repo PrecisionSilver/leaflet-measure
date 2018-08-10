@@ -4,10 +4,13 @@
 import length from '@turf/length';
 import area from '@turf/area';
 
+// pad zeros to single digit numbers and return them as strings
 function pad(num) {
   return num < 10 ? '0' + num.toString() : num.toString();
 }
 
+// convert Decimal Degrees to Degrees, Minutes and Seconds
+// returns a string of human readable coordinate representation
 function ddToDms(coordinate, posSymbol, negSymbol) {
   const dd = Math.abs(coordinate),
     d = Math.floor(dd),
@@ -19,7 +22,7 @@ function ddToDms(coordinate, posSymbol, negSymbol) {
 
 /* calc measurements for an array of points */
 export default function calc(latlngs) {
-  const last = latlngs[latlngs.length - 1];
+  const last = latlngs[latlngs.length - 1]; // last coordinate point
   const path = latlngs.map(latlng => [latlng.lat, latlng.lng]);
 
   const polyline = L.polyline(path),
